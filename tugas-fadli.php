@@ -193,7 +193,6 @@
     }
     echo "</table>";
 
-    // 4. Contoh mengambil data spesifik (Accessing by Key)
     $cariNim = "2026002";
     echo "<p><strong>Pencarian NIM $cariNim:</strong> " . $hashTableMahasantri[$cariNim] . "</p>";
 
