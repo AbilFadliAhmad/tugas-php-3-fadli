@@ -133,30 +133,43 @@
 
     <div class="card">
         <?php 
-        // Tugas TREE
-        echo "<h3>Tugas TREE</h3>";
-        class Node2 {
-            public $data; public $left; public $right;
-            public function __construct($data) {
-                $this->data = $data; $this->left = null; $this->right = null;
-            }
-        }
-        $root = new Node2("Data Root (Pusat)");
-        $root->left = new Node2("Data Child Kiri");
-        $root->right = new Node2("Data Child Kanan");
+            // Tugas TREE
+            echo "<h3>Tugas TREE</h3>";
 
-        function tampilkanTree($node) {
-            if ($node != null) {
-                echo $node->data . "<br>";
-                tampilkanTree($node->left);
-                tampilkanTree($node->right);
+            class Node2 {
+                public $data; public $left; public $right;
+                public function __construct($data) {
+                    $this->data = $data; $this->left = null; $this->right = null;
+                }
             }
-        }
-        echo "<div class='output'>";
-        tampilkanTree($root);
-        echo "</div>";
+
+            $root = new Node2("Data Root (Pusat)");
+            $root->left = new Node2("Data Child Kiri");
+            $root->right = new Node2("Data Child Kanan");
+
+            // Fungsi untuk menampilkan tree dalam bentuk ASCII pohon
+            function tampilkanTreeAscii($node, $prefix = "", $isLeft = true) {
+                if ($node == null) return;
+
+                echo $prefix;
+                echo $isLeft ? "├── " : "└── ";
+                echo $node->data . "\n";
+
+                // Prefix baru untuk anak-anak
+                $newPrefix = $prefix . ($isLeft ? "│   " : "    ");
+                if ($node->left != null) tampilkanTreeAscii($node->left, $newPrefix, true);
+                if ($node->right != null) tampilkanTreeAscii($node->right, $newPrefix, false);
+            }
+
+            echo "<div class='output' style='font-family: monospace; white-space: pre;'>";
+            // Root ditampilkan manual
+            echo $root->data . "\n";
+            tampilkanTreeAscii($root->left, "", true);
+            tampilkanTreeAscii($root->right, "", false);
+            echo "</div>";
         ?>
     </div>
+
 
     <div class="card">
         <?php 
